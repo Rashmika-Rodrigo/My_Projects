@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <link rel="stylesheet" href="Style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script> 
+</head>
+
+<body>
+    <div class="Feedback_Bg">
+        <table class="topic">
+            <tr>
+                <th class="topicsub1"><img src="images/logo1.png" width="280px" height="60px"></th>
+                <th class="topicsub2">Rashmika'Z Collection</th>
+            </tr>
+        </table>
+        <table class='header1'>
+            <tr>             
+                <th><span style="padding-left: 70px; padding-right: 70px;"></span></th>
+                    <th><a href = "index.html" class = "a1">Home</a></th>
+                    <th><a href = "my_collection.html" class = "a1">My Collection</a></th>
+                    <th><a href = "about_me.html" class = "a1">About Me</a></th>
+                    <th><a href = "contact_Me.html" class = "a1">Contact Me</a></th>
+                    <th><a href = "feedback.html" class = "a1">Feedback</a></th>
+                <th><span style="padding-left: 70px; padding-right: 70px;"></span></th>             
+            </tr>
+        </table>
+
+        <!--------------------------------------------Vue Js comments forum------------------------------------------------>
+
+        <div id = "vue_comments">
+
+        <h1 class="header2"><span id = "total">{{total}}</span> Feedbacks</h1>
+
+            <div style="margin-left: 500px;">
+    
+            <div class = "comments_output" style="margin-left: 160px;">
+                
+                <table id = "v-table">
+                    
+    
+                </table>
+    
+            </div>
+    
+            <div clas = "comments_input">
+                <form @submit.prevent = "{{post()}}" >
+                    <h1 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; padding-left: 150px;">Send us your feedback</h1>
+                    <table style="padding-bottom: 400px;">
+                        <tr>
+                            <td><input type="text" id = "name"  v-model="guestname" placeholder="Your Name" style="width:600px; height: 20px; border-radius: 7px;" required></td>
+                        </tr>
+                        <tr>
+                            <td><textarea id = "comments" cols="30" rows="7" v-model="comment" placeholder="Add a Comment..." style="width: 600px; border-radius: 7px;" required></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><button class = "btn2">Post</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            </div>
+        </div>
+    
+    
+        <script typle = "text/javascript"> 
+
+            var comments =[]; 
+    
+            var app = new Vue({
+    
+                el:'#vue_comments',
+    
+                data:{
+                    guestname:null,
+                    comment:null, 
+                    total:'0' 
+                },
+    
+                methods:{
+    
+                    post: function() {
+    
+                        var a = {
+                            name:this.guestname,
+                            feed:this.comment
+                        };
+
+                        comments.push(a);
+
+                        var table = document.getElementById('v-table');
+
+                        for(var b of comments){
+    
+                            var td = document.createElement('tr');
+    
+                            td.innerHTML = "<div class='single_comment'> <h3>" + b.name + "</h3> <p class ='p3'> " + b.feed + "</p>  </div>"                             
+                        }
+
+                        table.append(td);
+
+                        alert("Thank you " + b.name + " for your feedback !...");
+    
+                        this.total = comments.length;
+                    },
+                }
+            });
+        </script>
+    
+    </div>
+    <footer class = "footer">Designed and Developed By: W.D.R.R Rodrigo Copyright &copy; 2023. <small>All Rights Reserved.</small></footer>     
+</body>
+</html>
